@@ -1,11 +1,13 @@
 # Jogo dos fósforos
-## Menu do jogo
-def menu():
-    print("Bem-vindo ao Jogo dos Fósforos!")
-    print("As regras são: Inicialmente há 21 fósforos na mesa. Cada jogador retira alternadamente da mesa entre 1 a 4 fósforos. O jogador a retirar o último fósforo da mesa... perde!")
-    print("Existem dois modos de jogo:")
-    print("a) O jogador começa a jogar")
-    print("b) O computador começa a jogar")
+def menu_1():
+    print("Bem-vindo ao Jogo dos fósforos!")
+    print("As regras são as seguintes: O jogo começa com 21 fósforos e, em cada jogada, cada jogador tema escolha de retirar entre 1 a 4 fósforos. Os jogadores jogam alternadamente e o objetivo é deixar sempre fósforos em jogo. Quem tirar o último fósforo... perde!")
+
+def menu_2():
+    print("Eis os possíveis modos de jogo:")
+    print("1. O jogador joga em primeiro lugar")
+    print("2. O computador joga em primeiro lugar")
+    print("0. Sair")
 
 ## Modo 1: Vertente em que o jogador joga em primeiro lugar
 def modo_1():
@@ -22,68 +24,64 @@ def modo_1():
 
 ## Modo 2: Vertente em que o computador joga em primeiro lugar
 def modo_2():
+    jogada = 0
     fósforos = 21
     print("Há 21 fósforos em jogo.")
-    from random import randint
-    jogada1 = randint(1, min(4, fósforos))
-    fósforos = fósforos - jogada1
-    print(f"Quero tirar {jogada1} fósforos. Há agora {fósforos} em jogo.")
-    jogada2 = int(input("Escolhe o número de fósforos de queres tirar:"))
-    while jogada2 < 1 or jogada2 > 4:
-        print("Erro! Deve escolher entre 1 e 4 fósforos.")
+    while fósforos > 1:
+        from random import randint
+        jogada1 = randint(1, 4)
+        jogada = jogada + 1
+        fósforos = fósforos - jogada1
+        print(f"Quero tirar {jogada1} fósforos. Há agora {fósforos} em jogo.")
         jogada2 = int(input("Escolhe o número de fósforos de queres tirar:"))
-    fósforos = fósforos - jogada2
-    print(f"Retiraste {jogada2} fósforos. Assim, sobram {fósforos} em jogo.")
-    ftirados = jogada1 + jogada2
+        jogada = jogada + 1
+        while jogada2 < 1 or jogada2 > 4:
+            print("Erro! Deve escolher entre 1 e 4 fósforos.")
+            jogada2 = int(input("Escolhe o número de fósforos de queres tirar:"))
+        fósforos = fósforos - jogada2
+        print(f"Retiraste {jogada2} fósforos. Assim, sobram {fósforos} em jogo.")
 
-    while fósforos > 0:
-        if ftirados == 5:
-            jogada1 = randint(1, min(4, fósforos))
+        if jogada1 + jogada2 == 5:
+            jogada1 = randint(1, 4)
+            jogada = jogada + 1
             fósforos = fósforos - jogada1
             print(f"Quero tirar {jogada1} fósforos. Há agora {fósforos} em jogo.")
             jogada2 = int(input("Escolhe o número de fósforos de queres tirar:"))
+            jogada = jogada + 1
             while jogada2 < 1 or jogada2 > 4:
                 print("Erro! Deve escolher entre 1 e 4 fósforos.")
                 jogada2 = int(input("Escolhe o número de fósforos de queres tirar:"))
             fósforos = fósforos - jogada2
             print(f"Retiraste {jogada2} fósforos. Assim, sobram {fósforos} em jogo.")
-            ftirados = jogada1 + jogada2
-            if fósforos == 1:
-                print("Retiro 1 fósforo... Ganhaste!")
-                fósforos = 0
 
-        elif ftirados > 5:
-            jogada1 = 10 - ftirados
+        elif jogada1 + jogada2 != 5:
+            jogada1 = (fósforos - 1) % 5
+            jogada = jogada + 1
             fósforos = fósforos - jogada1
             print(f"Quero tirar {jogada1} fósforos. Há agora {fósforos} em jogo.")
             jogada2 = int(input("Escolhe o número de fósforos de queres tirar: "))
+            jogada = jogada + 1
             while jogada2 < 1 or jogada2 > 4:
                 print("Erro! Deve escolher entre 1 e 4 fósforos.")
                 jogada2 = int(input("Escolhe o número de fósforos de queres tirar: "))
             fósforos = fósforos - jogada2
             print(f"Retiraste {jogada2} fósforos. Assim, sobram {fósforos} em jogo.")
-            ftirados = jogada2
-            if fósforos == 0:
-                print("Já não há fósforos na mesa... Perdeste!")
-       
-        elif ftirados <= 5:
-            jogada1 = 5 - ftirados
-            fósforos = fósforos - jogada1
-            print(f"Quero tirar {jogada1} fósforos. Há agora {fósforos} em jogo.")
-            jogada2 = int(input("Escolhe o número de fósforos de queres tirar: "))
-            while jogada2 < 1 or jogada2 > 4:
-                print("Erro! Deve escolher entre 1 e 4 fósforos.")
-                jogada2 = int(input("Escolhe o número de fósforos de queres tirar: "))
-            fósforos = fósforos - jogada2
-            print(f"Retiraste {jogada2} fósforos. Assim, sobram {fósforos} em jogo.")
-            ftirados = jogada2
-            if fósforos == 0:
-                print("Já não há fósforos na mesa... Perdeste!")
 
-##Programa principal
-menu()
-modo = input("Escolha uma opção:")
-if modo == "a":
-    modo_1()
-elif modo == "b":
-    modo_2()
+    if fósforos == 1 and jogada % 2 == 0:
+        print("Oops... É a minha vez de jogar e só há 1 fósforo na mesa... Ganhaste!")
+    else:
+        print("Já não há fósforos na mesa... Perdeste!")
+
+## Programa principal
+menu_1()
+menu_2()
+
+opção = int(input("Introduza a opção desejada:"))
+while opção != 0:
+    if opção == 1:
+        modo_1()
+        menu_2()
+    elif opção == 2:
+        modo_2()
+        menu_2()
+print("Até à próxima!")

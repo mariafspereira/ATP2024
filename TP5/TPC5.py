@@ -1,5 +1,45 @@
-#Definir Funções
+# Menu Principal
+## Seleção da opção pretendida
+def print():
+    print("\n===== Menu =====\n(1) Inserir Salas \n(2) Listar Filmes \n(3) Disponibilidade de Lugar \n(4) Editar Salas \n(5) Vender Bilhete\n (0) Sair do Programa") 
+    opção = int(input("Insira o número da opção desejada: "))
 
+def menu():
+    cinema = []
+    print("\n===== Menu =====\n(1) Inserir Salas \n(2) Listar Filmes \n(3) Disponibilidade de Lugar \n(4) Editar Salas \n(5) Vender Bilhete\n (0) Sair do Programa") 
+    opção = int(input("Insira o número da opção desejada: "))
+    while opção != 0:
+        if opção == 1:
+            inserir_salas(cinema)
+        elif opção == 2:
+            if len(cinema) == 0:
+                print("\nNão há salas!")
+                print()
+            else:
+                listar_filmes(cinema)
+        elif opção == 3:
+            if len(cinema) == 0:
+                print("\nNão há salas!")
+                print()
+            else:
+                listar_disponibilidade(cinema)
+        elif opção == 4:
+            if len(cinema) == 0:
+                print("\nNão há salas!")
+                print()
+            else:
+                editar_salas(cinema)
+        elif opção == 5:
+            if len(cinema) == 0:
+                print("\nNão há salas!")
+                print()
+            else:
+                vender_bilhetes(cinema)
+        else:
+            print("\nOpção desconhecida.")
+            print()
+            
+#Definir Funções
 ## (1) Inserir Salas
 cinema = []
 def inserir_salas(cinema):
@@ -59,14 +99,14 @@ def editar_salas(cinema):   #sala=[NLugares, Vendidos, Filme, LInterditos]
             SalaSelecionada = int(input(f"\nEscolha o número da sala: 1 a {len(cinema)}): ")) - 1
             if 0 <= SalaSelecionada < len(cinema):
                 cinema[SalaSelecionada][2] = str(input("Introduza o novo nome do filme: "))
-                print(f"Alteração realizada com sucesso!")
+                print("Alteração realizada com sucesso!")
             else:
                 print("Número da sala inválido.")
         elif opção1 == 2:
             SalaSelecionada = int(input(f"\nEscolha o número da sala: 1 a {len(cinema)}): ")) - 1
             if 0 <= SalaSelecionada < len(cinema):
                 cinema[SalaSelecionada][2] = "Sem Filme"
-                print(f"Alteração realizada com sucesso!")
+                print("Alteração realizada com sucesso!")
             else:
                print("Número da sala inválido.") 
         elif opção1 == 3:
@@ -116,43 +156,5 @@ def vender_bilhetes(cinema):   #sala=[NLugares, Vendidos, Filme, LInterditos]
         cinema[SalaSelecionada][1] = cinema[SalaSelecionada][1] + NBilhetes
     else:
         print("A sala selecionada não tem nenhum filme.")
-
-# Menu Principal
-def menu():
-    cinema = []
-    print("\n===== Menu =====\n(1) Inserir Salas \n(2) Listar Filmes \n(3) Disponibilidade de Lugar \n(4) Editar Salas \n(5) Vender Bilhete\n (0) Sair do Programa") 
-    opção = int(input("Insira o número da opção desejada: "))
-    while opção != 0:
-        if opção == 1:
-            inserir_salas(cinema)
-        elif opção == 2:
-            if len(cinema) == 0:
-                print("\nNão há salas!")
-                opção = int(input("\nInsira o número da opção desejada: "))
-            else:
-                listar_filmes(cinema)
-        elif opção == 3:
-            if len(cinema) == 0:
-                print("\nNão há salas!")
-                opção = int(input("\nInsira o número da opção desejada: "))
-            else:
-                listar_disponibilidade(cinema)
-        elif opção == 4:
-            if len(cinema) == 0:
-                print("\nNão há salas!")
-                opção = int(input("\nInsira o número da opção desejada: "))
-            else:
-                editar_salas(cinema)
-        elif opção == 5:
-            if len(cinema) == 0:
-                print("\nNão há salas!")
-                opção = int(input("\nInsira o número da opção desejada: "))
-            else:
-                vender_bilhetes(cinema)
-        elif opção == 0: 
-            print("\nPrograma Encerrado.")
-        else:
-            print("\nOpção desconhecida.")
-            opção = int(input("\nInsira o número da opção desejada: "))
 
 menu()

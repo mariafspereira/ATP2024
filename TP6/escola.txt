@@ -1,0 +1,5 @@
+João Ribeiro; A104521; 12.5; 10.0; 15.2
+Diana Antunes; A104123; 17.0; 18.0; 12.5
+Rafael Alves; A104312; 13.2; 14.5; 10.0
+Catarina Pereira; A104185; 15.6; 14.0; 18.0
+Sónia Lamego; A104987; 17.9; 14.5; 16.5

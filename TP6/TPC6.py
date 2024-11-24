@@ -1,7 +1,7 @@
 # Menu Principal
 ## Seleção da opção pretendida
-def print():
-    print("\n===== Menu ===== \n(1) Criar uma turma \n(2) Inserir um aluno na turma \n(3) Listar as turma \n(4) Consultar um aluno por ID \n(5) Guardar a turma em ficheiro \n(6) Carregar uma turma dum ficheiro \n(0) Sair da aplicação") 
+def print1():
+    print("\n===== Menu ===== \n(1) Criar uma turma \n(2) Inserir um aluno na turma \n(3) Listar as turma \n(4) Consultar um aluno por \n(5) Guardar a turma em ficheiro \n(6) Carregar uma turma dum ficheiro \n(0) Sair da aplicação") 
     opção = int(input("\nInsira o número da opção desejada: "))
 
 def menu():
@@ -11,22 +11,22 @@ def menu():
     while opção != 0:
         if opção == 1:
             cria_turma(escola)
-            print()
+            print1()
         elif opção == 2:
             inserir_aluno(escola)
             print()
         elif opção == 3:
             listar_turmas(escola)
-            print()
+            print1()
         elif opção == 4:
             consultar_aluno(escola)
-            print()
+            print1()
         elif opção == 5:
             guardar(escola)
-            print()
+            print1()
         elif opção == 6:
             escola = carregar("escola.txt")
-            print()
+            print1()
         else:
             print("Opção desconhecida.")
 
@@ -36,10 +36,10 @@ def cria_turma(escola):
     escola.append([])
     print(f"Alteração realizada com sucesso! \nAtualmente há {len(escola)} turmas.")
     opção1 = str. lower(input("Deseja adicionar alunos à turma criada? (s/n)"))
-    if opção1 == s:
+    if opção1 == 's':
         inserir_aluno(escola)
     else:
-        print()
+        print("Alteração realizada com sucesso!")
 
 ## (2) Inserir um aluno na turma 
 def inserir_aluno(escola):   #Aluno = (nome, ID, [notas])
